@@ -1,5 +1,7 @@
 package com.towich
 
+import com.towich.features.login.configureLoginRouting
+import com.towich.features.register.configureRegisterRouting
 import com.towich.plugins.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -13,4 +15,6 @@ fun main() {
 fun Application.module() {
     configureRouting()
     configureSerialization()
+    configureLoginRouting()
+    configureRegisterRouting()
 }
