@@ -9,14 +9,14 @@ import io.ktor.server.netty.*
 import org.jetbrains.exposed.sql.Database
 
 fun main() {
-//
-//    // Подключаемся к базе данных
-//    Database.connect(
-//        url = "jdbc:postgresql://localhost:5432/restaurant",
-//        driver = "org.postgresql.Driver",
-//        user = Confidentials.databaseUser,
-//        password = Confidentials.databasePassword
-//    )
+
+    // Подключаемся к базе данных
+    Database.connect(
+        url = "jdbc:postgresql://${Constants.DATABASE_REMOTE_URL}",
+        driver = "org.postgresql.Driver",
+        user = Constants.DATABASE_USER,
+        password = Constants.DATABASE_PASSWORD
+    )
 
     // Запускаем бэк
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
