@@ -7,8 +7,11 @@ fun Application.configureGetDishesRouting() {
     val dishesController = DishesController()
 
     routing {
-        get("/dishes") {
-            dishesController.performGetDishes(call)
+        get("/dishes"){
+            dishesController.performGetAllDishes(call)
+        }
+        get("/dishes/{category}") {
+            dishesController.performGetDishesByCategory(call)
         }
     }
 }
