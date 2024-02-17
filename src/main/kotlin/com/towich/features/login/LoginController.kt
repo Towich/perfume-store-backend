@@ -13,9 +13,9 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import java.util.*
 
-class LoginController(private val call: ApplicationCall) {
+class LoginController(private val call: ApplicationCall): ILoginController {
 
-    suspend fun performLogin(){
+    override suspend fun performLogin(){
 
         // Получаем данные и десериализуем их в объект класса LoginReceiveRemote
         val receivedData = call.receive(LoginReceiveRemote::class)

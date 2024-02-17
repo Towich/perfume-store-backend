@@ -12,9 +12,9 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import java.util.*
 
-class RegisterController(private val call: ApplicationCall) {
+class RegisterController(private val call: ApplicationCall) : IRegisterController {
 
-    suspend fun registerNewUser() {
+    override suspend fun registerNewUser() {
 
         // Получаем данные и десериализуем их в объект класса RegisterReceiveRemote
         val receivedData = call.receive(RegisterReceiveRemote::class)

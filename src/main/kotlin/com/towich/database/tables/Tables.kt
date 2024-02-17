@@ -4,6 +4,7 @@ import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 import java.util.UUID
 
 object Tables: Table("tables") {
@@ -15,7 +16,7 @@ object Tables: Table("tables") {
     private val width_tiles = Tables.integer("width_tiles")
     private val height_tiles = Tables.integer("height_tiles")
 
-    private fun resultRowToDish(row: ResultRow) = TablesDTO(
+    private fun resultRowToTable(row: ResultRow) = TablesDTO(
         id = row[id],
         restaurant_id = row[restaurant_id],
         is_free = row[is_free],
@@ -28,6 +29,20 @@ object Tables: Table("tables") {
     fun getAllTablesByRestaurantId(restaurant_id: UUID): List<TablesDTO> = transaction {
         Tables
             .select { Tables.restaurant_id eq restaurant_id }
-            .map(::resultRowToDish)
+            .map(::resultRowToTable)
+    }
+
+    fun getTableById(id: UUID): TablesDTO? = transaction {
+        Tables
+            .select { Tables.id eq id }
+            .map(::resultRowToTable)
+            .singleOrNull()
+    }
+
+    fun updateTableIsFreeById(tableId: UUID, isFree: Boolean): Boolean = transaction {
+        Tables
+            .update({ Tables.id eq tableId }) {
+                it[is_free] = isFree
+            } > 0
     }
 }

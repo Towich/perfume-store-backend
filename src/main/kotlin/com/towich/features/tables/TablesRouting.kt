@@ -7,11 +7,14 @@ fun Application.configureTablesRouting() {
     val tablesController = TablesController()
 
     routing {
-        get("/tables"){
-//            tablesController.performGetTablesByRestaurant()
-        }
         get("/tables/{restaurant_id}") {
-            tablesController.performGetTablesByRestaurant(call)
+            tablesController.performGetTablesByRestaurantId(call)
+        }
+        get("/table/{table_id}"){
+            tablesController.performGetTableById(call)
+        }
+        post("/table"){
+            tablesController.performUpdateTableIsFreeById(call)
         }
     }
 }

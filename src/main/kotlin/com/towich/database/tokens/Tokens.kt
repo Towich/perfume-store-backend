@@ -1,11 +1,7 @@
 package com.towich.database.tokens
 
-import com.towich.database.users.UserDTO
-import com.towich.database.users.Users
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object Tokens: Table("tokens") {

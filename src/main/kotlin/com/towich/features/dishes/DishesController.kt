@@ -6,9 +6,9 @@ import com.towich.database.dishes_ingredients.DishesIngredients
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 
-class DishesController {
+class DishesController : IDishesController {
 
-    suspend fun performGetAllDishes(call: ApplicationCall) {
+    override suspend fun performGetAllDishes(call: ApplicationCall) {
         val respondDishes = mutableListOf<DishesRespondRemote>()
 
         val listOfAllDishes: List<DishesDTO> = Dishes.allDishes()
@@ -35,7 +35,7 @@ class DishesController {
         call.respond(respondDishes)
     }
 
-    suspend fun performGetDishesByCategory(call: ApplicationCall) {
+    override suspend fun performGetDishesByCategory(call: ApplicationCall) {
         val respondDishes = mutableListOf<DishesRespondRemote>()
 
         val listOfAllDishes: List<DishesDTO> = Dishes.allDishesByCategory(call.parameters["category"] ?: "null")
