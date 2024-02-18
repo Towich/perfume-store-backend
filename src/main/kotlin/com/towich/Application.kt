@@ -4,6 +4,7 @@ import com.towich.features.dishes.configureDishesRouting
 import com.towich.features.staticFiles.configureStaticFiles
 import com.towich.features.login.configureLoginRouting
 import com.towich.features.register.configureRegisterRouting
+import com.towich.features.restaurants.configureRestaurantsRouting
 import com.towich.features.tables.configureTablesRouting
 import com.towich.plugins.*
 import io.ktor.server.application.*
@@ -40,4 +41,5 @@ fun Application.module() {
     configureDishesRouting()
     configureStaticFiles()
     configureTablesRouting()
+    configureRestaurantsRouting()
 }
