@@ -40,7 +40,7 @@ class LoginController(private val call: ApplicationCall): ILoginController {
                 )
 
                 // Выдаем созданный токен в качестве ответа
-                call.respond(LoginRespondRemote(token = newToken))
+                call.respond(HttpStatusCode.OK, LoginRespondRemote(token = newToken))
             }
             else{
                 // иначе дропаем ошибку
@@ -49,7 +49,7 @@ class LoginController(private val call: ApplicationCall): ILoginController {
         }
         else{
             // иначе дропаем ошибку
-            call.respond(HttpStatusCode.BadRequest, "That user don't exists!")
+            call.respond(HttpStatusCode.NotFound, "That user don't exists!")
         }
     }
 }

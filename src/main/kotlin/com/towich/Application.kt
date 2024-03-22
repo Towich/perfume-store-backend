@@ -42,4 +42,5 @@ fun Application.module() {
     configureStaticFiles()
     configureTablesRouting()
     configureRestaurantsRouting()
+    configureSwaggerUI()
 }

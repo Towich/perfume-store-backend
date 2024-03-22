@@ -12,9 +12,9 @@ class TablesController: ITablesController {
         var restaurantId: UUID = UUID.randomUUID()
 
         try{
-            restaurantId = UUID.fromString(call.parameters["restaurant_id"]) ?: UUID.randomUUID()
+            restaurantId = UUID.fromString(call.parameters["restaurant_id"])
         } catch (e: IllegalArgumentException){
-            call.respond(HttpStatusCode.NotFound)
+            call.respond(HttpStatusCode.BadRequest)
         }
 
         val listOfTables: List<TablesRespondRemote> =
@@ -27,9 +27,9 @@ class TablesController: ITablesController {
     override suspend fun performGetTableById(call: ApplicationCall){
         var tableId = UUID.randomUUID()
         try{
-            tableId = UUID.fromString(call.parameters["table_id"]) ?: UUID.randomUUID()
+            tableId = UUID.fromString(call.parameters["table_id"])
         } catch (e: IllegalArgumentException){
-            call.respond(HttpStatusCode.NotFound)
+            call.respond(HttpStatusCode.BadRequest)
         }
 
         val foundTable: TablesRespondRemote? = Tables.getTableById(tableId)?.convertToTablesRespondRemote()
